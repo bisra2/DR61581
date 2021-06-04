@@ -1,7 +1,8 @@
 /*
 ATTENTION!!
-
-fonctionne avec afficheur TFT avec IC RM68140
+fonctionne avec afficheur OPEN-SMART 3.5" équipé du contrôleur IC R61581
+Si on utilise cet afficheur avec un contrôleur différent, il faudra remplacer
+les fichiers dans TFT_Drivers par les fichiers adéquats
 */
 
 #ifndef _SPI_595_ESP8266H_
@@ -43,16 +44,13 @@ fonctionne avec afficheur TFT avec IC RM68140
 #define TFT_SPI_SCK  14
 #define TFT_SPI_MOSI 13
 #define TFT_SPI_CS   15
-//#define TFT_SPI_OE 2 //OE put on gnd
 
 #define CD_COMMAND   GPOC=(1<<TFT_RS);
 #define CD_DATA      GPOS=(1<<TFT_RS);
-
 #define CS_ACTIVE    GPOC = ((uint32_t)1 << TFT_CS);
 #define CS_IDLE      GPOS = ((uint32_t)1 << TFT_CS);
 
 #define swap(a, b) { int16_t t = a; a = b; b = t; }
-
 
 
 void inline writebus(uint8_t) ;
@@ -94,12 +92,4 @@ class SPI_595_ESP8266 : public Adafruit_GFX {
     
 };
 
-/*
-void inline writebus(uint8_t) ;
-void writecommand(uint8_t) ;
-void writedata(uint8_t) ;
-void writedata16(uint16_t) ;
-void writedata16(uint16_t, uint32_t) ;
-void commandList(uint8_t *addr);
-*/
 #endif //endif of the header file
